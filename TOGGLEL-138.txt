@@ -1,0 +1,373 @@
+                        TTTTTTTTTTTT  OOOOOOOOOOOO   GGGGGGGGGG    GGGGGGGGGG   LL            EEEEEEEEEEEE  LL
+                       TTTTTTTTTTTT  OOOOOOOOOOOO  GGGGGGGGGGGG  GGGGGGGGGGGG  LL            EEEEEEEEEEEE  LL
+                           TT       OO        OO  GG        GG  GG        GG  LL            EE            LL
+                          TT       OO        OO  GG            GG            LL            EE            LL
+                         TT       OO        OO  GG            GG            LL            EE            LL
+                        TT       OO        OO  GG            GG            LL            EEEEEEEE      LL
+                       TT       OO        OO  GG     GGGGG  GG     GGGGG  LL            EEEEEEEE      LL
+                      TT       OO        OO  GG     GGGGG  GG     GGGGG  LL            EE            LL
+                     TT       OO        OO  GG        GG  GG        GG  LL            EE            LL
+                    TT       OO        OO  GG        GG  GG        GG  LL            EE            LL
+                   TT       OOOOOOOOOOOO  GGGGGGGGGGGG  GGGGGGGGGGGG  LLLLLLLLLLLL  EEEEEEEEEEEE  LLLLLLLLLLLL
+                  TT       OOOOOOOOOOOO   GGGGGGGGGG    GGGGGGGGGG   LLLLLLLLLLLL  EEEEEEEEEEEE  LLLLLLLLLLLL
+
+
+
+                    JJJJJJJJJJ       11        3333333333    8888888888                                AAAAAAAAAA
+                    JJJJJJJJJJ      111       333333333333  888888888888                              AAAAAAAAAAAA
+                        JJ         1111       33        33  88        88                              AA        AA
+                        JJ           11                 33  88        88                              AA        AA
+                        JJ           11                 33   88      88                               AA        AA
+                        JJ           11              3333     88888888                                AAAAAAAAAAAA
+                        JJ           11              3333     88888888                                AAAAAAAAAAAA
+                        JJ           11                 33   88      88                               AA        AA
+                  JJ    JJ           11                 33  88        88                              AA        AA
+                  JJ    JJ           11       33        33  88        88                              AA        AA
+                  JJJJJJJJ       1111111111   333333333333  888888888888                              AA        AA
+                   JJJJJJ        1111111111    3333333333    8888888888                               AA        AA
+
+
+****A  START  JOB  138  TOGGLEL   TOGGLE LED            ROOM        7.44.52 AM 04 AUG 21  PRINTER1  SYS HMVS  JOB  138  START  A****
+                                                J E S 2   J O B   L O G
+
+
+07.44.45 JOB  138  $HASP373 TOGGLEL  STARTED - INIT  1 - CLASS A - SYS HMVS
+07.44.45 JOB  138  IEF403I TOGGLEL - STARTED - TIME=07.44.45
+07.44.47 JOB  138  IEFACTRT ASM     /IFOX00  /00:00:01.45/00:00:01.80/00000/TOGGLEL
+07.44.47 JOB  138  IEF236I ALLOC. FOR TOGGLEL GO INIT
+07.44.47 JOB  138  IEF237I 01E  ALLOCATED TO OUTFLE
+07.44.52 JOB  138  IEFACTRT GO      /LOADER  /00:00:00.15/00:00:05.20/00000/TOGGLEL
+07.44.52 JOB  138  IEF404I TOGGLEL - ENDED - TIME=07.44.52
+07.44.52 JOB  138  $HASP395 TOGGLEL  ENDED
+
+
+------ JES2 JOB STATISTICS ------
+
+
+ 04 AUG 21 JOB EXECUTION DATE
+
+
+        45 CARDS READ
+
+
+       282 SYSOUT PRINT RECORDS
+
+
+         0 SYSOUT PUNCH RECORDS
+
+
+      0.11 MINUTES EXECUTION TIME
+    1     //TOGGLEL JOB  (001),'TOGGLE LED',                                      JOB  138
+          //             CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),REGION=128K
+    2     //INIT   EXEC ASMFCG
+    3     XXASMFCG   PROC MAC='SYS1.MACLIB',MAC1='SYS1.MACLIB'                    00050000
+    4     XXASM      EXEC PGM=IFOX00,PARM=OBJ,REGION=128K                         00100000
+    5     XXSYSLIB   DD   DSN=&MAC,DISP=SHR                                       00150000
+    6     XX         DD   DSN=&MAC1,DISP=SHR                                      00200000
+    7     //ASM.SYSUT1 DD UNIT=SYSDA
+          X/SYSUT1   DD   DSN=&&SYSUT1,UNIT=SYSSQ,SPACE=(1700,(600,100)),         00250000
+          XX             SEP=(SYSLIB)                                             00300000
+    8     //ASM.SYSUT2 DD UNIT=SYSDA
+          X/SYSUT2   DD   DSN=&&SYSUT2,UNIT=SYSSQ,SPACE=(1700,(300,50)),          00350000
+          XX             SEP=(SYSLIB,SYSUT1)                                      00400000
+    9     //ASM.SYSUT3 DD UNIT=SYSDA
+          X/SYSUT3   DD   DSN=&&SYSUT3,UNIT=SYSSQ,SPACE=(1700,(300,50))           00450000
+   10     XXSYSPRINT DD   SYSOUT=A,DCB=BLKSIZE=1089                               00500000
+   11     XXSYSPUNCH DD   SYSOUT=B                                                00550000
+   12     //ASM.SYSGO DD UNIT=SYSDA
+          X/SYSGO    DD   DSN=&&OBJSET,UNIT=SYSSQ,SPACE=(80,(200,50)),            00600000
+          XX             DISP=(MOD,PASS)                                          00650000
+   13     //ASM.SYSIN DD *
+   14     XXGO       EXEC PGM=LOADER,PARM='MAP,PRINT,NOCALL,LET',                 00700000
+          XX             COND=(8,LT,ASM)                                          00750000
+   15     XXSYSLIN   DD   DSN=&&OBJSET,DISP=(OLD,DELETE)                          00800000
+   16     XXSYSLOUT  DD   SYSOUT=A                                                00850000
+   17     //GO.OUTFLE DD UNIT=01E,UCS=AN
+          //
+ STMT NO. MESSAGE
+-
+    5     IEF653I SUBSTITUTION JCL - DSN=SYS1.MACLIB,DISP=SHR
+    6     IEF653I SUBSTITUTION JCL - DSN=SYS1.MACLIB,DISP=SHR
+IEF236I ALLOC. FOR TOGGLEL ASM INIT
+IEF237I 150  ALLOCATED TO SYSLIB
+IEF237I 150  ALLOCATED TO
+IEF237I 252  ALLOCATED TO SYSUT1
+IEF237I 251  ALLOCATED TO SYSUT2
+IEF237I 252  ALLOCATED TO SYSUT3
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I JES2 ALLOCATED TO SYSPUNCH
+IEF237I 252  ALLOCATED TO SYSGO
+IEF237I JES2 ALLOCATED TO SYSIN
+IEF142I TOGGLEL ASM INIT - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   SYS1.MACLIB                                  KEPT          *-------29
+IEF285I   VOL SER NOS= MVSRES.
+IEF285I   SYS1.MACLIB                                  KEPT          *--------0
+IEF285I   VOL SER NOS= MVSRES.
+IEF285I   SYS21216.T074445.RA000.TOGGLEL.SYSUT1        DELETED       *------155
+IEF285I   VOL SER NOS= WORK01.
+IEF285I   SYS21216.T074445.RA000.TOGGLEL.SYSUT2        DELETED       *-------28
+IEF285I   VOL SER NOS= WORK00.
+IEF285I   SYS21216.T074445.RA000.TOGGLEL.SYSUT3        DELETED       *--------8
+IEF285I   VOL SER NOS= WORK01.
+IEF285I   JES2.JOB00138.SO0102                         SYSOUT
+IEF285I   JES2.JOB00138.SO0103                         SYSOUT
+IEF285I   SYS21216.T074445.RA000.TOGGLEL.OBJSET        PASSED        *-------11
+IEF285I   VOL SER NOS= WORK01.
+IEF285I   JES2.JOB00138.SI0101                         SYSIN
+IEF373I STEP /ASM     / START 21216.0744
+IEF374I STEP /ASM     / STOP  21216.0744 CPU    0MIN 01.38SEC SRB    0MIN 00.07SEC VIRT   128K SYS   204K
+**** JOB NAME: TOGGLEL  JOBCARD READ 2021/216 07:44:45 370/148 VS2 R03.8 HMVS ******************************************************
+*                                                                                                                                  *
+*  STEP NUMBER:          1  USER CORE:        128K  START TIME:   07:44:45     CPU TIME:    00:00:01.45  ACTIVE TIME:  00:00:01.50 *
+*  STEP NAME:     ASM       SYSTEM CORE:      204K  STOP TIME:    07:44:47     SRB TIME:    00:00:00.07  ALLOC TIME:   07:44:45    *
+*  PROGRAM NAME:  IFOX00    REGION SIZE:      128K  ELAPSED TIME: 00:00:01.80  TCB TIME:    00:00:01.38  PROGRAM LOAD: 07:44:45    *
+*  CONDITION CODE:   00000  PERFORMANCE GROUP: 004                                                                                 *
+*                           JES2 CARDS:          3       SERVICE UNITS  PAGES IN/OUT  # SWAPS  PAGES SWAP IN/OUT  VIO PAGES IN/OUT *
+*                                                                1,925      0 /    0        0           0 /    0          0 /    0 *
+*                                                                                                                                  *
+*   ADDR/UNIT I/O COUNT  ADDR/UNIT I/O COUNT  ADDR/UNIT I/O COUNT  ADDR/UNIT I/O COUNT  ADDR/UNIT I/O COUNT  ADDR/UNIT I/O COUNT   *
+*   150/D3350        29  150/D3350         0  252/D3350       155  251/D3350        28  252/D3350         8  252/D3350        11   *
+************************************************************************************************************************************
+IEF236I ALLOC. FOR TOGGLEL GO INIT
+IEF237I 252  ALLOCATED TO SYSLIN
+IEF237I JES2 ALLOCATED TO SYSLOUT
+IEF237I 01E  ALLOCATED TO OUTFLE
+IEF142I TOGGLEL GO INIT - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   SYS21216.T074445.RA000.TOGGLEL.OBJSET        DELETED       *-------12
+IEF285I   VOL SER NOS= WORK01.
+IEF285I   JES2.JOB00138.SO0104                         SYSOUT
+IEF373I STEP /GO      / START 21216.0744
+IEF374I STEP /GO      / STOP  21216.0744 CPU    0MIN 00.14SEC SRB    0MIN 00.01SEC VIRT   128K SYS   156K
+************************************************************************************************************************************
+*                                                                                                                                  *
+*  STEP NUMBER:          2  USER CORE:        128K  START TIME:   07:44:47     CPU TIME:    00:00:00.15  ACTIVE TIME:  00:00:00.15 *
+*  STEP NAME:     GO        SYSTEM CORE:      156K  STOP TIME:    07:44:52     SRB TIME:    00:00:00.01  ALLOC TIME:   07:44:47    *
+*  PROGRAM NAME:  LOADER    REGION SIZE:      128K  ELAPSED TIME: 00:00:05.20  TCB TIME:    00:00:00.14  PROGRAM LOAD: 07:44:47    *
+*  CONDITION CODE:   00000  PERFORMANCE GROUP: 004                                                                                 *
+*                           JES2 CARDS:          0       SERVICE UNITS  PAGES IN/OUT  # SWAPS  PAGES SWAP IN/OUT  VIO PAGES IN/OUT **                                                                  156      0 /    0        0           2 /    2          0 /    0 *
+*                                                                                                                                  *
+*   ADDR/UNIT I/O COUNT  ADDR/UNIT I/O COUNT  ADDR/UNIT I/O COUNT  ADDR/UNIT I/O COUNT  ADDR/UNIT I/O COUNT  ADDR/UNIT I/O COUNT   *
+*   252/D3350        12  01E/ MISC         3                                                                                       *
+************************************************************************************************************************************
+IEF375I  JOB /TOGGLEL / START 21216.0744
+IEF376I  JOB /TOGGLEL / STOP  21216.0744 CPU    0MIN 01.52SEC SRB    0MIN 00.08SEC
+                                               EXTERNAL SYMBOL DICTIONARY                                      PAGE    1
+
+
+SYMBOL   TYPE  ID   ADDR  LENGTH LDID                                                            ASM 0201 07.44 08/04/21
+
+TOGGLEL   SD  0001 000000 0001B8                                                                                                               PAGE    2
+
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                       ASM 0201 07.44 08/04/21
+
+000000                                1 TOGGLEL  CSECT
+000000 90EC D00C      0000C           2          STM   14,12,12(13)
+000004 05C0                           3          BALR  12,0
+                            00006     4          USING *,12
+000006 50D0 C152      00158           5          ST    13,SAVE+4
+00000A 41D0 C14E      00154           6          LA    13,SAVE
+                                      7          OPEN  (OUTFLE,OUTPUT)
+00000E 0700                           8+         CNOP  0,4                               ALIGN LIST TO FULLWORD 01740001
+000010 4510 C012      00018           9+         BAL   1,*+8                             LOAD REG1 W/LIST ADDR. 01780000
+000014 8F                            10+         DC    AL1(143)                          OPTION BYTE            01900000
+000015 000068                        11+         DC    AL3(OUTFLE)                       DCB ADDRESS            01920000
+000018 0A13                          12+         SVC   19                                ISSUE OPEN SVC         04000000
+                                     13 *
+                                     14 *        WRITE TO 1403 PRINTER 01E TO TURN LIGHT ON
+00001A D20A C0C3 C19A 000C9 001A0    15          MVC   RECORD+1(11),=CL12'TURN LED ON'
+                                     16          PUT   OUTFLE,RECORD
+000020 4110 C062      00068          17+         LA    1,OUTFLE                          LOAD PARAMETER REG 1   01900002
+000024 4100 C0C2      000C8          18+         LA    0,RECORD                          LOAD PARAMETER REG 0   02500002
+000028 58F0 1030      00030          19+         L     15,48(0,1)               LOAD PUT ROUTINE ADDR           00550000
+00002C 05EF                          20+         BALR  14,15                    LINK TO PUT ROUTINE             00600000
+                                     21 *
+                                     22 *        WAIT 5 SECONDS
+                                     23          STIMER WAIT,BINTVL=WAITTIME
+                                     24+* /* MACDATE Y-1 72277                                               */ 03050002
+00002E 4110 C14A      00150          25+         LA    1,WAITTIME                        LOAD PARAMETER REG 1   01900002
+000032 4100 0011      00011          26+         LA    0,17(0,0)                          LOAD FLAG BYTE        27000002
+000036 8900 0018      00018          27+         SLL   0,24(0)                           SHIFT TO HI-ORDER BYTE 28000002
+00003A 0A2F                          28+         SVC   47                                ISSUE STIMER SVC       43000002
+                                     29 *
+                                     30 *        WRITE TO 1403 PRINTER 01E TO TURN LIGHT OFF
+00003C D20B C0C3 C1A6 000C9 001AC    31          MVC   RECORD+1(12),=CL12'TURN LED OFF'
+                                     32          PUT   OUTFLE,RECORD
+000042 4110 C062      00068          33+         LA    1,OUTFLE                          LOAD PARAMETER REG 1   01900002
+000046 4100 C0C2      000C8          34+         LA    0,RECORD                          LOAD PARAMETER REG 0   02500002
+00004A 58F0 1030      00030          35+         L     15,48(0,1)               LOAD PUT ROUTINE ADDR           00550000
+00004E 05EF                          36+         BALR  14,15                    LINK TO PUT ROUTINE             00600000
+                                     37 *
+                                     38          CLOSE (OUTFLE)
+000050                               39+         CNOP  0,4                               ALIGN LIST TO FULLWORD 02420002
+000050 4510 C052      00058          40+         BAL   1,*+8                             LOAD REG1 W/LIST ADDR  02460002
+000054 80                            41+         DC    AL1(128)                          OPTION BYTE            02580000
+000055 000068                        42+         DC    AL3(OUTFLE)                       DCB ADDRESS            02600000
+000058 0A14                          43+         SVC   20                                ISSUE CLOSE SVC        01640000
+00005A 58D0 C152      00158          44          L     13,SAVE+4
+00005E 98EC D00C      0000C          45          LM    14,12,12(13)
+000062 17FF                          46          XR    15,15
+000064 07FE                          47          BR    14
+                                     48 OUTFLE   DCB   DDNAME=OUTFLE,                                          X
+                                                       DSORG=PS,                                               X
+                                                       MACRF=PM,                                               X
+                                                       BLKSIZE=133,                                            X
+                                                       LRECL=133,                                              X
+                                                       RECFM=F
+
+                                                                                                               PAGE    3
+
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                       ASM 0201 07.44 08/04/21
+
+                                     50+*                       DATA CONTROL BLOCK                              22770020
+                                     51+*                                                                       22860020
+000066 0000
+000068                               52+OUTFLE   DC    0F'0'                   ORIGIN ON WORD BOUNDARY          22914020
+
+                                     54+*                       DIRECT ACCESS DEVICE INTERFACE                  27360020
+
+000068 0000000000000000              56+         DC    BL16'0'                  FDAD,DVTBL                      27540020
+000078 00000000                      57+         DC    A(0)                     KEYLE,DEVT,TRBAL                27720020
+
+                                     59+*                       COMMON ACCESS METHOD INTERFACE                  48690020
+
+00007C 00                            61+         DC    AL1(0)                  BUFNO                            49050020
+00007D 000001                        62+         DC    AL3(1)                  BUFCB                            54720020
+000080 0000                          63+         DC    AL2(0)             BUFL                                  55170020
+000082 4000                          64+         DC    BL2'0100000000000000'                                   *55800020
+                                       +                                                 DSORG                  55890020
+000084 00000001                      65+         DC    A(1)                     IOBAD                           56340020
+
+                                     67+*                       FOUNDATION EXTENSION                            56610020
+
+000088 00                            69+         DC    BL1'00000000'                  BFTEK,BFLN,HIARCHY        59850020
+000089 000001                        70+         DC    AL3(1)                  EODAD                            65970020
+00008C 80                            71+         DC    BL1'10000000'                                           *66150020
+                                       +                                       RECFM                            66240020
+00008D 000000                        72+         DC    AL3(0)                  EXLST                            66330020
+
+                                     74+*                       FOUNDATION BLOCK                                66690020
+
+000090 D6E4E3C6D3C54040              76+         DC    CL8'OUTFLE'             DDNAME                           66870020
+000098 02                            77+         DC    BL1'00000010'           OFLGS                            68220020
+000099 00                            78+         DC    BL1'00000000'                          IFLG              68310020
+00009A 0050                          79+         DC    BL2'0000000001010000'                                   *68400020
+                                       +                                                                       *68490020
+                                       +                                       MACR                             68580020
+
+                                     81+*                       BSAM-BPAM-QSAM INTERFACE                        74430020
+
+00009C 00                            83+         DC    BL1'00000000'                                           *74610020
+                                       +                                                                   RER1 74700020
+00009D 000001                        84+         DC    AL3(1)                  CHECK, GERR, PERR                74790020
+0000A0 00000001                      85+         DC    A(1)                    SYNAD                            74880020
+0000A4 0000                          86+         DC    H'0'                    CIND1, CIND2                     74970020
+0000A6 0085                          87+         DC    AL2(133)                BLKSIZE                          75240020
+0000A8 00000000                      88+         DC    F'0'                    WCPO, WCPL, OFFSR, OFFSW         75870020
+0000AC 00000001                      89+         DC    A(1)                    IOBA                             75960020
+0000B0 00                            90+         DC    AL1(0)                  NCP                              76050020
+0000B1 000001                        91+         DC    AL3(1)                  EOBR, EOBAD                      76140020
+
+                                     93+*                            QSAM INTERFACE                             81450020
+
+0000B4 00000001                      95+         DC    A(1)                     RECAD                           81630020
+0000B8 0000                          96+         DC    H'0'                    QSWS                             81810020
+0000BA 0085                          97+         DC    AL2(133)       LRECL                                     80730020
+0000BC 00                            98+         DC    BL1'00000000'           EROPT                            82530020                                                                                                               PAGE    4
+
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                       ASM 0201 07.44 08/04/21
+
+0000BD 000001                        99+         DC    AL3(1)                  CNTRL                            82620020
+0000C0 00000000                     100+         DC    F'0'                    PRECL                            82710020
+0000C4 00000001                     101+         DC    A(1)                    EOB                              82800020
+0000C8 4040404040404040             102 RECORD   DC    CL133' '
+00014D 000000
+000150 000001F4                     103 WAITTIME DC    F'500'
+000154                              104 SAVE     DS    18F
+                                    105          END
+0001A0 E3E4D9D540D3C5C4             106                =CL12'TURN LED ON'
+0001AC E3E4D9D540D3C5C4             107                =CL12'TURN LED OFF'                                                  RELOCATION DICTIONARY                                        PAGE    5
+
+
+POS.ID   REL.ID   FLAGS   ADDRESS                                                                ASM 0201 07.44 08/04/21
+
+ 0001     0001      08     000015
+ 0001     0001      08     000055
+                                                  CROSS-REFERENCE                                              PAGE    6
+
+
+SYMBOL    LEN   VALUE   DEFN    REFERENCES                                                       ASM 0201 07.44 08/04/21
+
+OUTFLE   00004 00000068 00052  00011 00017 00033 00042
+RECORD   00133 000000C8 00102  00015 00018 00031 00034
+SAVE     00004 00000154 00104  00005 00006 00044
+WAITTIME 00004 00000150 00103  00025                                                  LITERAL CROSS-REFERENCE                                      PAGE    7
+
+
+SYMBOL    LEN   VALUE   DEFN    REFERENCES                                                       ASM 0201 07.44 08/04/21
+
+=CL12'TURN LED ON'
+         00012 000001A0 00106  00015
+=CL12'TURN LED OFF'
+         00012 000001AC 00107  00031                                                  ASSEMBLER DIAGNOSTICS AND STATISTICS                         PAGE    8
+
+
+                                                                                                 ASM 0201 07.44 08/04/21
+
+NO STATEMENTS FLAGGED IN THIS ASSEMBLY
+HIGHEST SEVERITY WAS    0
+OPTIONS FOR THIS ASSEMBLY
+  ALIGN, ALOGIC, BUFSIZE(STD), DECK, ESD, FLAG(0), LINECOUNT(55), LIST, NOMCALL, YFLAG, WORKSIZE(2097152)
+  NOMLOGIC, NONUMBER, OBJECT, NORENT, RLD, NOSTMT, NOLIBMAC, NOTERMINAL, NOTEST, XREF(SHORT)
+  SYSPARM()
+WORK FILE BUFFER SIZE/NUMBER = 8702/ 1
+TOTAL RECORDS READ FROM SYSTEM INPUT         34
+TOTAL RECORDS READ FROM SYSTEM LIBRARY     3210
+TOTAL RECORDS PUNCHED                        11
+TOTAL RECORDS PRINTED                       158                                                      VS LOADER
+
+OPTIONS USED - PRINT,MAP,LET,NOCALL,NORES,NOTERM,SIZE=98304,NAME=**GO
+
+
+     NAME  TYPE  ADDR        NAME  TYPE  ADDR        NAME  TYPE  ADDR        NAME  TYPE  ADDR        NAME  TYPE  ADDR
+
+  TOGGLEL    SD  9C010
+IEW1161
+
+  TOTAL LENGTH      1B8
+  ENTRY ADDRESS   9C010
+
+
+IEW1161    WARNING - NO ENTRY POINT RECEIVED
+                        TTTTTTTTTTTT  OOOOOOOOOOOO   GGGGGGGGGG    GGGGGGGGGG   LL            EEEEEEEEEEEE  LL
+                       TTTTTTTTTTTT  OOOOOOOOOOOO  GGGGGGGGGGGG  GGGGGGGGGGGG  LL            EEEEEEEEEEEE  LL
+                           TT       OO        OO  GG        GG  GG        GG  LL            EE            LL
+                          TT       OO        OO  GG            GG            LL            EE            LL
+                         TT       OO        OO  GG            GG            LL            EE            LL
+                        TT       OO        OO  GG            GG            LL            EEEEEEEE      LL
+                       TT       OO        OO  GG     GGGGG  GG     GGGGG  LL            EEEEEEEE      LL
+                      TT       OO        OO  GG     GGGGG  GG     GGGGG  LL            EE            LL
+                     TT       OO        OO  GG        GG  GG        GG  LL            EE            LL
+                    TT       OO        OO  GG        GG  GG        GG  LL            EE            LL
+                   TT       OOOOOOOOOOOO  GGGGGGGGGGGG  GGGGGGGGGGGG  LLLLLLLLLLLL  EEEEEEEEEEEE  LLLLLLLLLLLL
+                  TT       OOOOOOOOOOOO   GGGGGGGGGG    GGGGGGGGGG   LLLLLLLLLLLL  EEEEEEEEEEEE  LLLLLLLLLLLL
+
+
+
+                    JJJJJJJJJJ       11        3333333333    8888888888                                AAAAAAAAAA
+                    JJJJJJJJJJ      111       333333333333  888888888888                              AAAAAAAAAAAA
+                        JJ         1111       33        33  88        88                              AA        AA
+                        JJ           11                 33  88        88                              AA        AA
+                        JJ           11                 33   88      88                               AA        AA
+                        JJ           11              3333     88888888                                AAAAAAAAAAAA
+                        JJ           11              3333     88888888                                AAAAAAAAAAAA
+                        JJ           11                 33   88      88                               AA        AA
+                  JJ    JJ           11                 33  88        88                              AA        AA
+                  JJ    JJ           11       33        33  88        88                              AA        AA
+                  JJJJJJJJ       1111111111   333333333333  888888888888                              AA        AA
+                   JJJJJJ        1111111111    3333333333    8888888888                               AA        AA
+
+
+****A   END   JOB  138  TOGGLEL   TOGGLE LED            ROOM        7.44.52 AM 04 AUG 21  PRINTER1  SYS HMVS  JOB  138   END   A****
