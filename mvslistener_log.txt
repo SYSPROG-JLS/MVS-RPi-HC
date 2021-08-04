@@ -2,6 +2,4 @@ pi@RPi2ModB:~ $ python3 mvslistener.py
 Received: INIT 1403
 Received: TURN LED ON
 Received: TURN LED OFF
-Received: TURN LED ON
-Received: TURN LED OFF
 pi@RPi2ModB:~ $ 
